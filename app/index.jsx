@@ -1,12 +1,29 @@
 import { Image, StyleSheet, Text, View, Pressable } from "react-native";
-import pomodoro from "../assets/images/pomodoro.png";
+import pomodoroImg from "../assets/images/pomodoro.png";
+import { useState } from "react";
+import HeaderPomo from "../components/headerPomo";
+import Timer from "../components/Timer";
+import { pomodoro } from "../utils";
 
 export default function Index() {
+  const [currentPomodoro, setCurrentPomodoro] = useState(pomodoro[0]);
+
   return (
     <View style={styles.container}>
-      <Image source={pomodoro} />
+      <Image source={currentPomodoro?.image || pomodoroImg} />
       <View style={styles.actions}>
-        <Text style={styles.timer}>25:00</Text>
+        <View style={styles.context}>
+          {pomodoro.map((item, index) => (
+            <HeaderPomo
+              key={index}
+              value={item}
+              currentPomodoro={currentPomodoro}
+              setCurrentPomodoro={setCurrentPomodoro}
+              index={index}
+            />
+          ))}
+        </View>
+        <Timer totalSeconds={currentPomodoro?.time} />
         <Pressable style={styles.btnComecar}>
           <Text style={styles.txtBtnComecar}>Começar</Text>
         </Pressable>
@@ -39,12 +56,6 @@ const styles = StyleSheet.create({
     borderColor: "#144480",
     marginHorizontal: "auto",
   },
-  timer: {
-    fontSize: 54,
-    fontWeight: "bold",
-    color: "#fff",
-    textAlign: "center",
-  },
   btnComecar: {
     width: "100%",
     height: 40,
@@ -65,5 +76,10 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "#98A0A8",
     fontSize: 12.5,
+  },
+  context: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
   },
 });
