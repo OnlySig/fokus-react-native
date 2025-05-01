@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Pressable, StyleSheet, Text } from "react-native";
+import { IconPause, IconPlay } from "../Icons";
 
 const Timer = ({ totalSeconds }) => {
   const [timer, setTimer] = useState(totalSeconds);
@@ -49,6 +50,10 @@ const Timer = ({ totalSeconds }) => {
           setPlay(!play);
         }}
       >
+        <Text>
+          {play ? <IconPause /> : recomecar ? <IconPlay /> : <IconPlay />}
+        </Text>
+
         <Text style={styles.txtBtnComecar}>{displayBtn()}</Text>
       </Pressable>
     </>
@@ -69,6 +74,8 @@ const styles = StyleSheet.create({
     borderRadius: 32,
     justifyContent: "center",
     alignItems: "center",
+    flexDirection: "row",
+    gap: 8,
   },
   txtBtnComecar: {
     fontWeight: "bold",

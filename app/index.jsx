@@ -7,7 +7,6 @@ import { pomodoro } from "../utils";
 
 export default function Index() {
   const [currentPomodoro, setCurrentPomodoro] = useState(pomodoro[0]);
-  console.log(currentPomodoro);
   return (
     <View style={styles.container}>
       <Image source={currentPomodoro?.image || pomodoroImg} />
