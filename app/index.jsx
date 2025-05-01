@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View, Pressable } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import pomodoroImg from "../assets/images/pomodoro.png";
 import { useState } from "react";
 import HeaderPomo from "../components/headerPomo";
@@ -7,7 +7,7 @@ import { pomodoro } from "../utils";
 
 export default function Index() {
   const [currentPomodoro, setCurrentPomodoro] = useState(pomodoro[0]);
-
+  console.log(currentPomodoro);
   return (
     <View style={styles.container}>
       <Image source={currentPomodoro?.image || pomodoroImg} />
@@ -24,9 +24,6 @@ export default function Index() {
           ))}
         </View>
         <Timer totalSeconds={currentPomodoro?.time} />
-        <Pressable style={styles.btnComecar}>
-          <Text style={styles.txtBtnComecar}>Começar</Text>
-        </Pressable>
       </View>
       <View style={styles.footer}>
         <Text style={styles.txtFooter}>
@@ -55,19 +52,6 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "#144480",
     marginHorizontal: "auto",
-  },
-  btnComecar: {
-    width: "100%",
-    height: 40,
-    backgroundColor: "#B872FF",
-    borderRadius: 32,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  txtBtnComecar: {
-    fontWeight: "bold",
-    fontSize: 18,
-    color: "#021123",
   },
   footer: {
     width: "80%",

@@ -11,7 +11,7 @@ export const pomodoro = [
   },
   {
     id: 1,
-    time: 5 * 60,
+    time: 5,
     image: short,
     display: "Pausa curta",
   },
