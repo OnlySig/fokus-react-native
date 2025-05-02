@@ -1,6 +1,6 @@
 import Svg, { Path } from "react-native-svg";
 
-export const IconPlay = (color = "#021123") => {
+export const IconPlay = ({ color = "#021123" }) => {
   return (
     <Svg width="11" height="15" viewBox="0 0 11 15" fill={color}>
       <Path
@@ -11,7 +11,7 @@ export const IconPlay = (color = "#021123") => {
   );
 };
 
-export const IconPause = (color = "#021123") => {
+export const IconPause = ({ color = "#021123" }) => {
   return (
     <Svg width="12" height="15" viewBox="0 0 12 15" fill={color}>
       <Path

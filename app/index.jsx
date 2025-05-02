@@ -1,68 +1,63 @@
-import { Image, StyleSheet, Text, View } from "react-native";
-import pomodoroImg from "../assets/images/pomodoro.png";
-import { useState } from "react";
-import HeaderPomo from "../components/headerPomo";
-import Timer from "../components/Timer";
-import { pomodoro } from "../utils";
+import { Text, View, Image, StyleSheet } from "react-native";
+import logo from "../assets/images/fokus-logo.png";
+import imageHome from "../assets/images/imageHome.png";
+import Footer from "../components/Footer";
+import { Link } from "expo-router";
 
 export default function Index() {
-  const [currentPomodoro, setCurrentPomodoro] = useState(pomodoro[0]);
   return (
     <View style={styles.container}>
-      <Image source={currentPomodoro?.image || pomodoroImg} />
-      <View style={styles.actions}>
-        <View style={styles.context}>
-          {pomodoro.map((item, index) => (
-            <HeaderPomo
-              key={index}
-              value={item}
-              currentPomodoro={currentPomodoro}
-              setCurrentPomodoro={setCurrentPomodoro}
-              index={index}
-            />
-          ))}
-        </View>
-        <Timer totalSeconds={currentPomodoro?.time} />
-      </View>
-      <View style={styles.footer}>
-        <Text style={styles.txtFooter}>
-          Projeto fictício e sem fins comerciais. Desenvolvido por Alura e
-          Gabriel C Pereira :).
+      <Image source={logo} />
+      <View>
+        <Text style={styles.txtHome}>
+          Otimize sua produtividade,{" "}
+          <Text style={styles.txtHome2}>mergulhe no que importa</Text>
         </Text>
+        <Link href={{ pathname: "/pomodoro" }} style={styles.getStartBtn}>
+          <Text style={styles.btnTxt}>Quero iniciar!</Text>
+        </Link>
+        <Image style={styles.imgHome} source={imageHome} />
       </View>
+      <Footer />
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
     backgroundColor: "#021123",
-    gap: 40,
-  },
-  actions: {
-    gap: 32,
-    padding: 24,
-    backgroundColor: "#14448080",
-    width: "80%",
-    borderRadius: 32,
-    borderWidth: 2,
-    borderColor: "#144480",
-    marginHorizontal: "auto",
-  },
-  footer: {
-    width: "80%",
-  },
-  txtFooter: {
-    textAlign: "center",
-    color: "#98A0A8",
-    fontSize: 12.5,
-  },
-  context: {
-    flexDirection: "row",
-    justifyContent: "space-around",
     alignItems: "center",
+    paddingTop: 40,
+  },
+  txtHome: {
+    color: "#fff",
+    fontSize: 30,
+    textAlign: "center",
+    fontWeight: "100",
+  },
+  getStartBtn: {
+    backgroundColor: "#B872FF",
+    borderRadius: 32,
+    color: "#021123",
+    fontSize: 18,
+    padding: 8,
+    marginVertical: 16,
+    width: 264,
+    marginHorizontal: "auto",
+    display: "flex",
+    justifyContent: "center",
+  },
+  btnTxt: {
+    fontWeight: "700",
+    textAlign: "center",
+  },
+  txtHome2: {
+    fontWeight: "500",
+  },
+  imgHome: {
+    width: 300,
+    height: 250,
+    marginHorizontal: "auto",
+    marginBottom: 40,
   },
 });
