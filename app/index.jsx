@@ -10,8 +10,8 @@ export default function Index() {
       <Image source={logo} />
       <View>
         <Text style={styles.txtHome}>
-          Otimize sua produtividade,{" "}
-          <Text style={styles.txtHome2}>mergulhe no que importa</Text>
+          Otimize sua{"\n"}produtividade,{"\n"}
+          <Text style={styles.txtHome2}>mergulhe no que{"\n"}importa</Text>
         </Text>
         <Link href={{ pathname: "/pomodoro" }} style={styles.getStartBtn}>
           <Text style={styles.btnTxt}>Quero iniciar!</Text>
@@ -27,13 +27,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#021123",
     alignItems: "center",
-    paddingTop: 40,
+    justifyContent: "center",
   },
   txtHome: {
     color: "#fff",
     fontSize: 30,
     textAlign: "center",
     fontWeight: "100",
+    marginTop: 40,
   },
   getStartBtn: {
     backgroundColor: "#B872FF",
