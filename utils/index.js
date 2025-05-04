@@ -22,3 +22,5 @@ export const pomodoro = [
     display: "Pausa longa",
   },
 ];
+
+export const TASKS_STORAGE_KEY = "fokus-tasks";

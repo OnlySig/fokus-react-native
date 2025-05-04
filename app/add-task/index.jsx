@@ -12,8 +12,20 @@ import {
 } from "react-native";
 import { IconPlus } from "../../components/Icons";
 import Button from "../../components/Button";
+import useTaskContext from "../../hooks/useTaskContext";
+import { useState } from "react";
+import { useRouter } from "expo-router";
 
 export default function AddTask() {
+  const { addTask } = useTaskContext();
+  const [description, setDescription] = useState("");
+  const { navigate } = useRouter();
+  const handleSubmit = () => {
+    if (!description.trim()) return;
+    addTask(description);
+    setDescription("");
+    navigate("/tasks");
+  };
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -25,9 +37,15 @@ export default function AddTask() {
           <Text style={styles.txtContent}>
             Em que você está{"\n"}trabalhando?
           </Text>
-          <TextInput style={styles.input} numberOfLines={10} multiline={true} />
+          <TextInput
+            style={styles.input}
+            numberOfLines={10}
+            multiline={true}
+            value={description}
+            onChangeText={setDescription}
+          />
           <View style={styles.actions}>
-            <Pressable style={styles.btnEdit}>
+            <Pressable style={styles.btnEdit} onPress={handleSubmit}>
               <Ionicons name="save" size={16} color={"#021123"} />
               <Text style={styles.btnAction}>Salvar</Text>
             </Pressable>
