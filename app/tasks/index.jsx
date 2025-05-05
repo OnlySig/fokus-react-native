@@ -20,6 +20,7 @@ export default function Tasks() {
               text={item.description}
               onPressDelet={() => deleteTasks(item.id)}
               setToogleCompleted={() => toggleTaskCompleted(item.id)}
+              onPressEdit={() => navigate(`/edit-task/${item.id}`)}
             />
           )}
           keyExtractor={(item) => item.id}

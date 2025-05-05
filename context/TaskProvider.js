@@ -33,8 +33,13 @@ export function TasksProvider({ children }) {
     if (isLoaded) storeData();
   }, [tasks]);
 
-  const addTask = (description) => {
+  const addTask = (description, id) => {
     setTasks((prevTasks) => {
+      if (id) {
+        return prevTasks.map((task) => {
+          return task.id === id ? { ...task, description } : task;
+        });
+      }
       return [
         ...prevTasks,
         {

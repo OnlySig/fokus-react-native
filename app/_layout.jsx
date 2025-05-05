@@ -69,6 +69,26 @@ export default function RootLayout() {
                 title: "",
               }}
             />
+            <Drawer.Screen
+              name="edit-task/[id]"
+              options={{
+                drawerItemStyle: {
+                  display: "none", //?tira o link do drawer
+                },
+                title: "",
+                headerLeft: () => {
+                  return (
+                    <Ionicons
+                      name="arrow-back"
+                      size={24}
+                      color={"#fff"}
+                      style={{ marginLeft: 16 }}
+                      onPress={() => navigate("/tasks")}
+                    />
+                  );
+                },
+              }}
+            />
           </Drawer>
         </SafeAreaView>
       </GestureHandlerRootView>

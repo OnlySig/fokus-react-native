@@ -16,12 +16,20 @@ import useTaskContext from "../../hooks/useTaskContext";
 import { useState } from "react";
 import { useRouter } from "expo-router";
 
-export default function AddTask() {
-  const { addTask } = useTaskContext();
-  const [description, setDescription] = useState("");
+export default function AddTask({ id }) {
+  const { addTask, tasks } = useTaskContext();
+  const currentTask = tasks?.find((task) => task.id === Number(id));
+  const [description, setDescription] = useState(
+    id ? currentTask.description : ""
+  );
   const { navigate } = useRouter();
   const handleSubmit = () => {
     if (!description.trim()) return;
+    if (id) {
+      addTask(description, Number(id));
+      navigate("/tasks");
+      return;
+    }
     addTask(description);
     setDescription("");
     navigate("/tasks");
@@ -31,7 +39,7 @@ export default function AddTask() {
       style={styles.container}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
-      <Text style={styles.title}>Adicionar tarefa:</Text>
+      <Text style={styles.title}>{id ? "Editar" : "Adicionar"} tarefa:</Text>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.content}>
           <Text style={styles.txtContent}>
